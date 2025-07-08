@@ -8,5 +8,8 @@ export default {
     extend: {},
   },
   plugins: [],
+  // tailwind.config.js
+  darkMode: 'class',
+
 }
 
