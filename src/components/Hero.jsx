@@ -6,6 +6,7 @@ const Hero = () => {
   const [typewriterText, setTypewriterText] = useState('');
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [imgError, setImgError] = useState(false); 
 
   useEffect(() => {
     const current = titles[currentTitleIndex];
@@ -121,12 +122,19 @@ const Hero = () => {
             
             <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center border-4 border-white/20 shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-105">
               <div className="w-72 h-72 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden shadow-inner shadow-black/40">
-                <img
-                  src="profile.png"
-                  alt="Profile of Hassan Shamil"
-                  className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
+                {!imgError ? (
+                  <img
+                    src="/profile.png"
+                    alt="Profile of Hassan Shamil"
+                    className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                    onError={() => setImgError(true)} 
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-white text-center text-sm p-4">
+                    Profile image unavailable
+                  </div>
+                )}
               </div>
             </div>
           </div>
